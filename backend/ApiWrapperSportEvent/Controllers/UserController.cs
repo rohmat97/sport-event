@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.BearerToken;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Any;
@@ -9,6 +10,7 @@ using System.Text;
 
 [ApiController]
 [Route("api/[controller]")]
+
 public class UserController : ControllerBase
 {
     private readonly IHttpClientFactory _httpClientFactory;

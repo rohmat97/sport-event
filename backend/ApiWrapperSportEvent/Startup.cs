@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 
 public class Startup
 {
+    readonly string allowSpecificOrigins = "AllowAllHeaders";
     public Startup(IConfiguration configuration, IWebHostEnvironment environment)
     {
         Configuration = configuration;
@@ -19,10 +20,28 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        var origins = new string[] {
+            "http://localhost:3000", // development
+            "http://localhost:5166", // development
+            "http://localhost/TM", // IIS
+            // others
+        };
+        services.AddCors(options =>
+        {
+            options.AddPolicy(allowSpecificOrigins,
+            builder =>
+            {
+                builder.WithOrigins(origins)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+        });
         services.AddControllers();
         services.AddHttpClient();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
         services.AddHttpClient("MyApiClient", client =>
         {
             // Configure HttpClient options if needed
@@ -37,12 +56,12 @@ public class Startup
         });
 
 
-        // Additional service configurations can be added here
     }
 
 
     public void Configure(IApplicationBuilder app)
     {
+
         if (Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -53,12 +72,15 @@ public class Startup
         // Configure other middleware
 
         app.UseRouting();
+        app.UseCors(allowSpecificOrigins);
         app.UseAuthorization();
         app.UseDefaultFiles();
         app.UseStaticFiles();
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
+
     }
 }
