@@ -7,14 +7,14 @@ const axiosInstance: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     // Add any other default headers if needed
+    "Authorization": "",   
   },
   httpsAgent: new https.Agent({  
     rejectUnauthorized: false   // Allow insecure requests
   }),
   insecureHTTPParser:true,
-
 
 });
 
