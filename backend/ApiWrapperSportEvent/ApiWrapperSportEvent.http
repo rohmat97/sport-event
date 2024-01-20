@@ -1,0 +1,6 @@
+@ApiWrapperSportEvent_HostAddress = http://localhost:5166
+
+GET {{ApiWrapperSportEvent_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
