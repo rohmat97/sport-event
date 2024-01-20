@@ -1,8 +1,12 @@
 "use client";
 
 import axiosInstance from "@/api/interceptor";
+import {
+  getDataFromLocalStorage,
+  saveDataToLocalStorage,
+} from "@/utils/localStorageAuth";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Login() {
   const router = useRouter();
@@ -15,8 +19,10 @@ export default function Login() {
         email: username,
         password: password,
       });
-      //   router.replace("/dashboard");
       console.log("Response:", responseData.data);
+      saveDataToLocalStorage(responseData.data);
+      alert("Login Success");
+      router.replace("/dashboard");
     } catch (error: any) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -38,6 +44,18 @@ export default function Login() {
   };
 
   const handleRegister = () => [router.push("/register")];
+
+  const checkCredentials = async () => {
+    const localStorageAuth = await getDataFromLocalStorage();
+    if (!!localStorageAuth) {
+      router.replace("/dashboard");
+    }
+  };
+
+  useEffect(() => {
+    checkCredentials();
+  }, []);
+
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-gray-100 bg-cover bg-center"

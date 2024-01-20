@@ -1,7 +1,9 @@
 "use client";
 
+import axiosInstance from "@/api/interceptor";
+import { getDataFromLocalStorage } from "@/utils/localStorageAuth";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const Register = () => {
   const router = useRouter();
@@ -20,7 +22,7 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     // Basic validation example
     if (formData.password !== formData.confirmPassword) {
@@ -28,9 +30,44 @@ const Register = () => {
     } else {
       // Handle registration logic (submit data, etc.)
       console.log("Form submitted:", formData);
+      try {
+        const responseData = await axiosInstance.post(
+          "/api/User/login",
+          formData
+        );
+        console.log("Response:", responseData.data);
+        alert("Register Success");
+        router.replace("/login");
+      } catch (error: any) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.error("Response data:", error.response.data);
+          console.error("Response status:", error.response.status);
+          console.error("Response headers:", error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error("No response received:", error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error("Error setting up request:", error.message);
+        }
+        console.error("Error config:", error.config);
+      }
       router.back();
     }
   };
+
+  const checkCredentials = async () => {
+    const localStorageAuth = await getDataFromLocalStorage();
+    if (!!localStorageAuth) {
+      router.replace("/dashboard");
+    }
+  };
+
+  useEffect(() => {
+    checkCredentials();
+  }, []);
 
   return (
     <div
@@ -53,7 +90,7 @@ const Register = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded text-gray-700"
             />
           </div>
 
@@ -67,7 +104,7 @@ const Register = () => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded text-gray-700"
             />
           </div>
         </div>
@@ -82,7 +119,7 @@ const Register = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-gray-700"
           />
         </div>
 
@@ -96,7 +133,7 @@ const Register = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-gray-700"
           />
         </div>
 
@@ -110,7 +147,7 @@ const Register = () => {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-gray-700"
           />
         </div>
 
