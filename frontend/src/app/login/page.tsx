@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import AuthApiService from "@/api/auth/auth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -9,9 +9,16 @@ export default function Login() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.replace("/dashboard");
+    try {
+      const responseData = await AuthApiService.login({ exampleData: "Hello" });
+      //   router.replace("/dashboard");
+      console.log("Response:", responseData);
+    } catch (error: any) {
+      console.error("Error:", error?.message);
+    }
+
     // Handle login logic here
   };
 
