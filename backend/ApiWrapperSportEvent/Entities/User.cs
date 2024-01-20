@@ -21,3 +21,17 @@ public class CreateUser
     // Add more user properties as needed
 }
 
+public class Login
+{
+    public required string email { get; set; }
+    public required string password { get; set; }
+    // Add more user properties as needed
+}
+public class ResultLogin
+{
+
+    public required string email { get; set; }
+    public required string token { get; set; }
+    public required int id { get; set; }
+    // Add more user properties as needed
+}

@@ -20,6 +20,48 @@ public class UserController : ControllerBase
         _logger = logger;
     }
 
+    [HttpPost("login", Name = "Login")]
+    public async Task<ActionResult<ResultLogin>> Login([FromBody] Login payload)
+    {
+        try
+        {
+            // return Ok(payload);
+            // Create an HttpClient using the named client configured in Startup.cs
+            using (var httpClient = _httpClientFactory.CreateClient("MyApiClient"))
+            {
+                // Convert User object to JSON and create a StringContent
+                var jsonContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+
+                // jsonContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                // Make the HTTP request using PostAsync
+                var response = await httpClient.PostAsync("/api/v1/users/login", jsonContent);
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize the JSON response to User
+                    var createdUser = await response.Content.ReadFromJsonAsync<ResultLogin>();
+
+                    // Return the result
+                    return Ok(createdUser);
+                }
+                else
+                {
+                    // Log unsuccessful response details
+                    _logger.LogError($"Failed to create user. Status code: {response.Content}");
+                    return BadRequest($"Failed to create user. Status code: {response.StatusCode}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log exception details
+            _logger.LogError(ex, "An error occurred while processing the request.");
+            return BadRequest($"An error occurred: {ex.Message}");
+        }
+    }
+
     [HttpPost]
     public async Task<ActionResult<User>> CreateAccount([FromBody] CreateUser payload)
     {
