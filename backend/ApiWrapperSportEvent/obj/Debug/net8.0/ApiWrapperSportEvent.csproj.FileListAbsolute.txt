@@ -6,6 +6,7 @@
 /Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/ApiWrapperSportEvent.dll
 /Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/ApiWrapperSportEvent.pdb
 /Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll

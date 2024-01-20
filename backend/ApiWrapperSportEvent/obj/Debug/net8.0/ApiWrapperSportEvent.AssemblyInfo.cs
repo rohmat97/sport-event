@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiWrapperSportEvent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09bebd5f9a3af996deb2ae189e5f60154746d2fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+455591ba9de1d7c975064412da0440327c85f8b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiWrapperSportEvent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiWrapperSportEvent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

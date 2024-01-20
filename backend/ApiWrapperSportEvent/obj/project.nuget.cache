@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "EawxXRS3Gc33Lk2obwfYmxHEs/xs2dA7mIDgPTEAXY5U8DjZnQ3zdYJaby+KeX+mZ5QDidHpKnkvCr8MXbUbWQ==",
+  "dgSpecHash": "9N2Ffk7SS6THw9Bjen3oNkyZIUEmjZ83dG6Nw+giT+e0UpLvMF4IcRT7qbqQNyVRWgocYRcfSFPsPaTP2Upnug==",
   "success": true,
   "projectFilePath": "/Users/rohmatdasuki/Documents/Voxteneo/sport-event/backend/ApiWrapperSportEvent/ApiWrapperSportEvent.csproj",
   "expectedPackageFiles": [
     "/Users/rohmatdasuki/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/rohmatdasuki/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/rohmatdasuki/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/rohmatdasuki/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/Users/rohmatdasuki/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "/Users/rohmatdasuki/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

@@ -26,8 +26,16 @@ public class Startup
         services.AddHttpClient("MyApiClient", client =>
         {
             // Configure HttpClient options if needed
-            client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com");
+            client.BaseAddress = new Uri("https://api-sport-events.test.voxteneo.com");
         });
+        // Add logging services
+        services.AddLogging(builder =>
+        {
+            builder.AddConsole(); // Log to the console
+            builder.AddDebug();   // Log to the debug output
+                                  // Add other logging providers if needed
+        });
+
 
         // Additional service configurations can be added here
     }
@@ -37,12 +45,15 @@ public class Startup
     {
         if (Environment.IsDevelopment())
         {
-            // Configure development-specific middleware
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiWrapperSportEvent v1"));
         }
 
         // Configure other middleware
 
         app.UseRouting();
+        app.UseAuthorization();
         app.UseDefaultFiles();
         app.UseStaticFiles();
         app.UseEndpoints(endpoints =>
