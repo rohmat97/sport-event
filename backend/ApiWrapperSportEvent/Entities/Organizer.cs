@@ -1,5 +1,5 @@
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-public class Datum
+public class DatumOrganizer
 {
     public int id { get; set; }
     public string organizerName { get; set; }
@@ -28,7 +28,7 @@ public class Pagination
 
 public class RootOrganizer
 {
-    public List<Datum> data { get; set; }
+    public List<DatumOrganizer> data { get; set; }
     public Meta meta { get; set; }
 }
 
