@@ -1,13 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import OrganizerTab from "./OrganizerTab";
 import SportEventTab from "./SportEventTab";
+import { getDataFromLocalStorage } from "@/utils/localStorageAuth";
+import { useRouter } from "next/navigation";
 
 type DashboardPageProps = {};
 
 const DashboardPage: React.FC<DashboardPageProps> = () => {
+  const { replace } = useRouter();
   const [selectedTab, setselectedTab] = useState(1);
+  const checkCredentials = async () => {
+    const localStorageAuth = await getDataFromLocalStorage();
+    if (!localStorageAuth) {
+      replace("/login");
+    }
+  };
+
+  useEffect(() => {
+    checkCredentials();
+  }, []);
 
   return (
     <header className="bg-white">

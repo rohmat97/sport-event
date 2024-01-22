@@ -12,7 +12,7 @@ const Register = () => {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    repeatPassword: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,36 +25,35 @@ const Register = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     // Basic validation example
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.password !== formData.repeatPassword) {
       alert("Passwords do not match!");
     } else {
       // Handle registration logic (submit data, etc.)
       console.log("Form submitted:", formData);
       try {
-        const responseData = await axiosInstance.post(
-          "/api/User/login",
-          formData
-        );
+        const responseData = await axiosInstance.post("/api/User", formData);
         console.log("Response:", responseData.data);
         alert("Register Success");
-        router.replace("/login");
+        router.back();
       } catch (error: any) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.error("Response data:", error.response.data);
-          console.error("Response status:", error.response.status);
-          console.error("Response headers:", error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error("No response received:", error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error("Error setting up request:", error.message);
-        }
-        console.error("Error config:", error.config);
+        alert(error.message);
+        //   if (error.response) {
+        //     // The request was made and the server responded with a status code
+        //     // that falls out of the range of 2xx
+        //     console.error("Response data:", error.response.data);
+        //     console.error("Response status:", error.response.status);
+        //     console.error("Response headers:", error.response.headers);
+        //   } else if (error.request) {
+        //     // The request was made but no response was received
+        //     console.error("No response received:", error.request);
+        //   } else {
+        //     // Something happened in setting up the request that triggered an Error
+        //     console.error("Error setting up request:", error.message);
+        //   }
+        //   console.error("Error config:", error.config);
+        // }
+        // router.back();
       }
-      router.back();
     }
   };
 
@@ -143,9 +142,9 @@ const Register = () => {
           </label>
           <input
             type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
+            id="repeatPassword"
+            name="repeatPassword"
+            value={formData.repeatPassword}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded text-gray-700"
           />
